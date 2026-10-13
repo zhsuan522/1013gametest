@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="用 Phaser.js 的互動任務學習 Java：一次一個概念，透過預測、觀察、解釋與遷移練習程式思考。"
+    />
+    <meta name="theme-color" content="#f6f5ef" />
+    <title>Java 任務學習室</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到學習內容</a>
+
+    <header class="topbar">
+      <a class="brand" href="#main-content" aria-label="Java 任務學習室首頁">
+        <span class="brand-mark" aria-hidden="true">J<span>.</span></span>
+        <span class="brand-name">Java 任務學習室</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="beginner-label"><span class="status-dot"></span> 初學者路線</span>
+        <span class="completed-count" id="completed-count" aria-live="polite">已完成 0 / 3</span>
+      </div>
+    </header>
+
+    <main id="main-content" class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line"></span> JAVA · 互動任務</p>
+          <h1 id="page-title">讓程式一步一步跑起來</h1>
+          <p class="intro-copy">每次專注一個概念。先預測、再執行，最後說出你發現了什麼。</p>
+        </div>
+        <div class="learning-rhythm" aria-label="學習流程：預測、執行、解釋、遷移">
+          <span class="rhythm-label">學習節奏</span>
+          <span class="rhythm-step">預測</span><span class="rhythm-arrow" aria-hidden="true">→</span>
+          <span class="rhythm-step">執行</span><span class="rhythm-arrow" aria-hidden="true">→</span>
+          <span class="rhythm-step">解釋</span><span class="rhythm-arrow" aria-hidden="true">→</span>
+          <span class="rhythm-step">遷移</span>
+        </div>
+      </section>
+
+      <nav class="journey" aria-label="任務進度">
+        <div class="journey-heading">
+          <span class="section-label">你的學習路線</span>
+          <span class="journey-hint">依序完成，已解鎖的任務可重看</span>
+        </div>
+        <ol id="mission-progress" class="mission-progress"></ol>
+      </nav>
+
+      <div id="lesson-view" class="learning-layout">
+        <section class="challenge-card" aria-labelledby="lesson-title">
+          <div class="card-heading">
+            <div>
+              <p id="lesson-kicker" class="lesson-kicker">任務 01 · 文字輸出</p>
+              <h2 id="lesson-title">讓終端機說聲嗨</h2>
+            </div>
+            <span class="focus-badge"><span aria-hidden="true">◎</span> 一次一個觀念</span>
+          </div>
+
+          <p id="lesson-goal" class="lesson-goal">選出正確的程式碼，讓主控台顯示指定文字。</p>
+          <div class="task-prompt">
+            <span class="prompt-marker" aria-hidden="true">任務</span>
+            <p id="lesson-prompt">選一行可以把「你好，Java！」輸出到主控台。</p>
+          </div>
+
+          <div class="editor" aria-label="Java 程式碼範例">
+            <div class="editor-bar">
+              <span class="file-tab"><span class="file-dot" aria-hidden="true"></span> Main.java</span>
+              <span class="editor-note">選出缺少的那一行</span>
+            </div>
+            <div id="code-editor" class="code-editor" aria-live="polite"></div>
+          </div>
+
+          <fieldset class="choice-fieldset">
+            <legend id="choice-legend">先選擇你認為正確的程式碼</legend>
+            <div id="code-choices" class="code-choices"></div>
+          </fieldset>
+
+          <div class="challenge-actions">
+            <button id="run-button" class="primary-button" type="button" disabled>
+              <span class="play-icon" aria-hidden="true">▶</span> 執行程式
+            </button>
+            <p class="action-hint">先做出選擇，執行後再一起看結果。</p>
+          </div>
+          <p id="run-feedback" class="run-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="simulator-card" aria-labelledby="simulator-title">
+          <div class="simulator-heading">
+            <div>
+              <p class="section-label">即時回饋</p>
+              <h2 id="simulator-title">任務模擬器</h2>
+            </div>
+            <span class="simulator-live"><span class="status-dot"></span> 準備就緒</span>
+          </div>
+          <div id="phaser-world" class="phaser-world" aria-hidden="true"></div>
+          <div id="phaser-fallback" class="phaser-fallback" hidden>
+            <span class="fallback-bot" aria-hidden="true">J</span>
+            <span>機器人等待程式指令</span>
+          </div>
+          <div id="console-output" class="console-output" aria-live="polite">
+            <div class="console-heading">
+              <span class="console-lamp" aria-hidden="true"></span>
+              <span>主控台輸出</span>
+              <span class="console-state" id="console-state">尚未執行</span>
+            </div>
+            <pre id="output-text" class="output-text">執行程式後，結果會顯示在這裡。</pre>
+          </div>
+          <p class="simulator-caption" id="simulator-caption">此模擬器聚焦本關指定語法，未執行完整 Java 編譯。動畫標示執行狀態，輸出文字同步顯示於主控台。</p>
+        </section>
+
+        <section id="reflection-panel" class="reflection-panel" aria-labelledby="reflection-title" hidden>
+          <div class="reflection-heading">
+            <div>
+              <p class="section-label">反思鷹架</p>
+              <h2 id="reflection-title">停一下，整理你的發現</h2>
+            </div>
+            <span id="reflection-stage" class="reflection-stage">第 3 步，共 4 步</span>
+          </div>
+          <div class="reflection-comparison" id="prediction-comparison"></div>
+          <div id="reflection-content" class="reflection-content"></div>
+          <label id="note-label" class="note-label" for="reflection-note" hidden>
+            <span>留一句給未來的自己 <span class="optional-label">選填</span></span>
+            <textarea id="reflection-note" rows="2" maxlength="240" placeholder="我原本以為……，現在我知道……"></textarea>
+          </label>
+          <div class="reflection-footer">
+            <span class="privacy-note"><span aria-hidden="true">↗</span> 這段筆記只保存在目前的瀏覽器</span>
+            <button id="continue-button" class="primary-button" type="button" disabled>完成反思</button>
+          </div>
+        </section>
+      </div>
+
+      <section id="completion-view" class="completion-view" aria-labelledby="completion-title" hidden>
+        <div class="completion-art" aria-hidden="true"><span>✓</span></div>
+        <p class="eyebrow"><span class="eyebrow-line"></span> 任務路線完成</p>
+        <h2 id="completion-title">你已經讓 Java 開始工作了。</h2>
+        <p class="completion-copy">你練習了文字輸出、變數與條件判斷。每次預測、觀察和修正，都是程式設計的一部分。</p>
+        <div class="recap-list" id="recap-list"></div>
+        <button id="restart-button" class="secondary-button" type="button">從第一關再練習</button>
+      </section>
+
+      <footer class="page-footer">
+        <span><span class="footer-mark">J.</span> 小步練習，建立程式直覺</span>
+        <span>分段學習 <span aria-hidden="true">·</span> 重點提示 <span aria-hidden="true">·</span> 精簡回饋</span>
+      </footer>
+    </main>
+
+    <noscript><p class="noscript-message">請啟用 JavaScript，才能開始互動任務。</p></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
