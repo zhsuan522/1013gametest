@@ -2,6 +2,11 @@
 
 一個以 Phaser.js 製作視覺回饋、以原生 HTML/CSS/JavaScript 製作教材流程的 Java 入門互動任務。
 
+## 專案連結
+
+- 線上體驗：[Java 任務學習室](https://zhsuan522.github.io/1013gametest/)
+- 原始碼：[GitHub repository](https://github.com/zhsuan522/1013gametest)
+
 ## 學習內容
 
 1. 文字輸出：字串、`System.out.println` 與分號。
